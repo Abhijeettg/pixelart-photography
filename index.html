@@ -100,7 +100,7 @@
   .filters button { background: none; border: 1px solid var(--line); color: var(--muted); padding: 9px 16px; font: 400 12px var(--sans); letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transition: all .2s; }
   .filters button:hover { color: var(--text); border-color: var(--muted); }
   .filters button.on { border-color: var(--gold); color: var(--gold-soft); }
-  .gallery { columns: 4 280px; column-gap: 8px; }
+  .gallery { columns: 3 220px; column-gap: 8px; }
   .gallery .slot { break-inside: avoid; margin-bottom: 8px; cursor: zoom-in; }
   .gallery .slot.hide { display: none; }
 
@@ -264,24 +264,19 @@
   ];
 
   const HERO = [
-    { src: "", label: "Couples · beach",   tint: "#4a3f2e" },
-    { src: "", label: "Maternity",         tint: "#3a4733" },
-    { src: "", label: "Portrait",          tint: "#4c2c29" },
+    { src: "images/couple-beach.jpg",           alt: "Couple embracing on the beach" },
+    { src: "images/maternity-blue-lehenga.jpg", alt: "Maternity portrait in a blue lehenga" },
+    { src: "images/maternity-green-saree.jpg",  alt: "Maternity portrait in a green saree" },
   ];
 
   const PHOTOS = [
-    { src: "", cat: "couples",   alt: "Couple embracing on the beach",          ratio: 1.25 },
-    { src: "", cat: "maternity", alt: "Maternity portrait in a green saree",     ratio: 1.3 },
-    { src: "", cat: "portraits", alt: "Portrait in a red gown",                  ratio: 1.35 },
-    { src: "", cat: "corporate", alt: "Corporate Christmas party group photo",   ratio: 0.65 },
-    { src: "", cat: "kids",      alt: "Race-car themed second birthday",         ratio: 1 },
-    { src: "", cat: "cultural",  alt: "Large family group at a celebration",     ratio: 0.7 },
-    { src: "", cat: "cultural",  alt: "Marigold backdrop decor",                 ratio: 1.3 },
-    { src: "", cat: "couples",   alt: "Couple portrait at golden hour",          ratio: 0.8 },
-    { src: "", cat: "portraits", alt: "Outdoor portrait",                        ratio: 1.2 },
-    { src: "", cat: "maternity", alt: "Maternity couple outdoors",               ratio: 0.75 },
-    { src: "", cat: "kids",      alt: "First birthday cake smash",               ratio: 1.25 },
-    { src: "", cat: "corporate", alt: "Event candid",                            ratio: 0.75 },
+    { src: "images/couple-beach.jpg",              cat: "couples",   alt: "Couple embracing on the beach" },
+    { src: "images/corporate-christmas-party.jpg", cat: "corporate", alt: "Absolut Financial Christmas party group photo" },
+    { src: "images/maternity-green-saree.jpg",     cat: "maternity", alt: "Maternity portrait in a green saree" },
+    { src: "images/birthday-two-fast.jpg",         cat: "kids",      alt: "Race-car themed second birthday" },
+    { src: "images/maternity-blue-lehenga.jpg",    cat: "maternity", alt: "Maternity portrait in a blue lehenga" },
+    { src: "images/family-celebration.jpg",        cat: "cultural",  alt: "Large family group at a celebration" },
+    { src: "images/golf-day.jpg",                  cat: "corporate", alt: "Golf day candid" },
   ];
   /* ============================================================ */
 
