@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PixelArt Photography</title>
-<meta name="description" content="PixelArt Photography — maternity, couples, portraits, birthdays, cultural celebrations and corporate events.">
+<meta name="description" content="PixelArt Photography: weddings, maternity, couples, portraits, birthdays, cultural celebrations and events.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Allura&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
   @media (max-width: 820px) { .nav ul { display: none; } }
 
   /* ---------- hero ---------- */
-  .hero { position: relative; min-height: 100svh; display: grid; grid-template-columns: 1.1fr 1fr; }
+  .hero { position: relative; height: 100svh; min-height: 620px; max-height: 1100px; display: grid; grid-template-columns: 1.1fr 1fr; }
   .hero-copy { display: flex; flex-direction: column; justify-content: flex-end; padding: 140px var(--gutter) 72px; position: relative; z-index: 2; }
   .eyebrow { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; }
   h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 7.4vw, 124px); line-height: .95; letter-spacing: -.01em; }
@@ -55,12 +55,14 @@
   .btn.fill:hover { background: var(--gold-soft); }
   .btn.ghost { color: var(--gold-soft); background: none; }
   .btn.ghost:hover { background: rgba(201,166,107,.12); }
-  .hero-media { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1.4fr 1fr; gap: 8px; padding: 96px var(--gutter) 40px 0; }
+  .hero-media { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: minmax(0, 1.25fr) minmax(0, 1fr); gap: 8px; padding: 96px var(--gutter) 40px 0; min-height: 0; }
   .hero-media .slot:first-child { grid-row: span 2; }
+  .hero-media .slot { min-height: 0; }
+  .hero-media img { position: absolute; inset: 0; object-position: center 30%; }
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; }
+    .hero { grid-template-columns: 1fr; height: auto; max-height: none; }
     .hero-copy { padding-top: 120px; padding-bottom: 32px; }
-    .hero-media { padding: 0 var(--gutter) 48px; height: 70vh; }
+    .hero-media { padding: 0 var(--gutter) 48px; height: 75svh; }
   }
 
   /* ---------- photo slot (real photo or styled placeholder) ---------- */
@@ -100,7 +102,7 @@
   .filters button { background: none; border: 1px solid var(--line); color: var(--muted); padding: 9px 16px; font: 400 12px var(--sans); letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transition: all .2s; }
   .filters button:hover { color: var(--text); border-color: var(--muted); }
   .filters button.on { border-color: var(--gold); color: var(--gold-soft); }
-  .gallery { columns: 3 220px; column-gap: 8px; }
+  .gallery { columns: 4 220px; column-gap: 8px; }
   .gallery .slot { break-inside: avoid; margin-bottom: 8px; cursor: zoom-in; }
   .gallery .slot.hide { display: none; }
 
@@ -167,7 +169,7 @@
   <div class="hero-copy">
     <div class="eyebrow">PixelArt Photography</div>
     <h1>Moments worth <em>keeping</em></h1>
-    <p>Maternity, couples, portraits, first birthdays, cultural celebrations and corporate events. Natural light, honest emotion, and photos you'll want on the wall.</p>
+    <p>Weddings, maternity, couples, portraits, first birthdays, cultural celebrations and events. Natural light, honest emotion, and photos you'll want on the wall.</p>
     <div class="cta-row">
       <a href="#contact" class="btn fill">Enquire now</a>
       <a href="#work" class="btn ghost">See the work</a>
@@ -255,32 +257,58 @@
      ratio = height / width, only used for placeholders.
      ============================================================ */
   const SERVICES = [
-    { id: "maternity",  name: "Maternity",            text: "Soft, glowing portraits of the bump, outdoors in a garden or by the water." },
+    { id: "weddings",   name: "Weddings",              text: "Ceremony, reception and first dance, from church vows to sangeet nights." },
+    { id: "maternity",  name: "Maternity",             text: "Soft, glowing portraits of the bump, among the flowers, in the garden or by the water." },
     { id: "couples",    name: "Couples & Engagement",  text: "Beach walks, golden hour and candid moments, for save-the-dates or just because." },
-    { id: "portraits",  name: "Portraits",             text: "Individual and fashion-style portraits for profiles, birthdays or a fresh look." },
+    { id: "portraits",  name: "Portraits",             text: "Bridal, festive and individual portraits that feel like you at your best." },
     { id: "kids",       name: "Birthdays & Kids",      text: "Cake smashes, themed first birthdays and the chaos that makes them fun." },
-    { id: "cultural",   name: "Cultural Celebrations", text: "Baby showers, poojas, festivals and family functions, covered start to finish." },
-    { id: "corporate",  name: "Corporate & Events",    text: "Christmas parties, launches and team events, with group shots and candid coverage." },
+    { id: "cultural",   name: "Cultural Celebrations", text: "Haldi, poojas, baby showers, festivals and family functions, covered start to finish." },
+    { id: "corporate",  name: "Corporate & Events",    text: "Christmas parties, golf days and team events, with group shots and candid coverage." },
   ];
 
   const HERO = [
-    { src: "images/couple-beach.jpg",           alt: "Couple embracing on the beach" },
-    { src: "images/maternity-blue-lehenga.jpg", alt: "Maternity portrait in a blue lehenga" },
-    { src: "images/maternity-green-saree.jpg",  alt: "Maternity portrait in a green saree" },
+    { src: "images/wedding-couple-maroon.jpg", alt: "Bride and groom portrait" },
+    { src: "images/couple-beach-wind.jpg",     alt: "Couple on the beach, hair in the wind" },
+    { src: "images/maternity-flowers-couple.jpg", alt: "Maternity shoot among pink flowers" },
   ];
 
   const PHOTOS = [
-    { src: "images/couple-beach.jpg",              cat: "couples",   alt: "Couple embracing on the beach" },
-    { src: "images/corporate-christmas-party.jpg", cat: "corporate", alt: "Absolut Financial Christmas party group photo" },
-    { src: "images/maternity-green-saree.jpg",     cat: "maternity", alt: "Maternity portrait in a green saree" },
-    { src: "images/birthday-two-fast.jpg",         cat: "kids",      alt: "Race-car themed second birthday" },
-    { src: "images/maternity-blue-lehenga.jpg",    cat: "maternity", alt: "Maternity portrait in a blue lehenga" },
-    { src: "images/family-celebration.jpg",        cat: "cultural",  alt: "Large family group at a celebration" },
-    { src: "images/golf-day.jpg",                  cat: "corporate", alt: "Golf day candid" },
+    { src: "images/wedding-church-kiss.jpg", cat: "weddings", alt: "Couple kissing at the church altar" },
+    { src: "images/maternity-blue-lehenga.jpg", cat: "maternity", alt: "Maternity portrait in a blue lehenga" },
+    { src: "images/kids-slide.jpg", cat: "kids", alt: "Toddler on a green slide" },
+    { src: "images/portrait-bride-gold.jpg", cat: "portraits", alt: "Bride in gold jewellery" },
+    { src: "images/couple-beach.jpg", cat: "couples", alt: "Couple embracing on the beach" },
+    { src: "images/cultural-haldi.jpg", cat: "cultural", alt: "Laughing at a haldi ceremony" },
+    { src: "images/wedding-first-dance.jpg", cat: "weddings", alt: "Black and white first dance" },
+    { src: "images/maternity-green-solo.jpg", cat: "maternity", alt: "Maternity portrait in a green saree under blue sky" },
+    { src: "images/kids-first-birthday-cake.jpg", cat: "kids", alt: "First birthday cake" },
+    { src: "images/couple-beach-run.jpg", cat: "couples", alt: "Couple running along the shore" },
+    { src: "images/event-golf-swing.jpg", cat: "corporate", alt: "Golf day swing" },
+    { src: "images/portrait-mehndi-teal.jpg", cat: "portraits", alt: "Bride showing her mehndi" },
+    { src: "images/maternity-flowing-saree.jpg", cat: "maternity", alt: "Flowing saree in the garden" },
+    { src: "images/kids-dad-lift.jpg", cat: "kids", alt: "Dad lifting his son at a birthday" },
+    { src: "images/wedding-bride-garden.jpg", cat: "weddings", alt: "Bride arriving through the garden" },
+    { src: "images/cultural-pooja.jpg", cat: "cultural", alt: "Family pooja" },
+    { src: "images/couple-beach-smile.jpg", cat: "couples", alt: "Couple smiling on the beach" },
+    { src: "images/maternity-pink-saree.jpg", cat: "maternity", alt: "Maternity portrait in a pink saree" },
+    { src: "images/kids-second-birthday.jpg", cat: "kids", alt: "Second birthday portrait" },
+    { src: "images/corporate-christmas-party.jpg", cat: "corporate", alt: "Absolut Financial Christmas party" },
+    { src: "images/portrait-green-suit.jpg", cat: "portraits", alt: "Festive portrait in green" },
+    { src: "images/wedding-reception-stage.jpg", cat: "weddings", alt: "Wedding reception stage" },
+    { src: "images/maternity-green-saree.jpg", cat: "maternity", alt: "Maternity couple in the garden" },
+    { src: "images/kids-mum-lift.jpg", cat: "kids", alt: "Mum lifting her baby among balloons" },
+    { src: "images/cultural-celebration-dance.jpg", cat: "cultural", alt: "Dancing at a family celebration" },
+    { src: "images/maternity-flowers-friend.jpg", cat: "maternity", alt: "Maternity portrait with a friend" },
+    { src: "images/kids-birthday-backdrop.jpg", cat: "kids", alt: "Birthday backdrop with balloons" },
+    { src: "images/event-golf-green.jpg", cat: "corporate", alt: "Golfer on the green" },
+    { src: "images/cultural-group.jpg", cat: "cultural", alt: "Family group at a celebration" },
+    { src: "images/maternity-flowers-couple.jpg", cat: "maternity", alt: "Maternity couple among pink flowers" },
+    { src: "images/wedding-couple-maroon.jpg", cat: "weddings", alt: "Bride and groom portrait" },
+    { src: "images/couple-beach-wind.jpg", cat: "couples", alt: "Couple on the beach, hair in the wind" },
   ];
   /* ============================================================ */
 
-  const TINTS = { maternity: "#3a4733", couples: "#4a3f2e", portraits: "#4c2c29", kids: "#333b4d", cultural: "#4f3d20", corporate: "#35353b" };
+  const TINTS = { weddings: "#4a3a2e", maternity: "#3a4733", couples: "#4a3f2e", portraits: "#4c2c29", kids: "#333b4d", cultural: "#4f3d20", corporate: "#35353b" };
   const nameOf = id => SERVICES.find(s => s.id === id)?.name ?? id;
 
   function slot({ src, label, alt, tint, ratio }) {
